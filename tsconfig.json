@@ -1,0 +1,16 @@
+{
+	"exclude": ["vite.config.mts", "dist"],
+	"compilerOptions": {
+		"declarationDir": "dist/types",
+		"target": "ES2022",
+		"module": "ES2022",
+		"declaration": true,
+		"jsx": "react-jsx",
+		"moduleResolution": "Node",
+		"strict": true,
+		"noUnusedLocals": true,
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+		"rootDir": "./src"
+	}
+}

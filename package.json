@@ -1,0 +1,84 @@
+{
+	"name": "react-singleton-context-example-library",
+	"version": "1.0.0",
+	"description": "The build time library half of the react-singleton-context example",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/juliaschiller150/react-singleton-context-example-library"
+	},
+	"files": [
+		"dist",
+		"src"
+	],
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.mjs",
+	"cjs": "dist/cjs/index.js",
+	"esm": "dist/esm/index.mjs",
+	"es": "dist/esm/index.mjs",
+	"types": "dist/types/index.d.ts",
+	"scripts": {
+		"prebuild": "npm run clean",
+		"build:code": "rollup -c ./rollup.config.mjs",
+		"build:types": "tsc --emitDeclarationOnly",
+		"build": "npm run build:code && npm run build:types",
+		"format": "prettier --check src/* src/**/*",
+		"package": "npm pack",
+		"clean": "rm -rf dist stats coverage",
+		"commitlint": "commitlint --color --verbose",
+		"lint": "eslint ./src",
+		"lint:fix": "eslint ./src --fix",
+		"quality": "concurrently -n format,lint,bulid,test -c blue,magenta,grey,green \"npm run format\" \"npm run lint\" \"npm run build\" \"npm run test\"",
+		"test": "vitest run --silent --root src",
+		"prepare": "husky"
+	},
+	"devDependencies": {
+		"@babel/plugin-transform-runtime": "^7.25.9",
+		"@babel/preset-env": "^7.26.7",
+		"@babel/preset-react": "^7.26.3",
+		"@babel/preset-typescript": "^7.26.0",
+		"@commitlint/cli": "^19.6.1",
+		"@commitlint/config-conventional": "^19.6.0",
+		"@eslint/eslintrc": "^3.2.0",
+		"@eslint/js": "^9.19.0",
+		"@rollup/plugin-babel": "^6.0.4",
+		"@rollup/plugin-commonjs": "^28.0.2",
+		"@rollup/plugin-node-resolve": "^16.0.0",
+		"@testing-library/dom": "^10.4.0",
+		"@testing-library/react": "^16.2.0",
+		"@types/react": "^19.0.8",
+		"@typescript-eslint/eslint-plugin": "^8.22.0",
+		"@typescript-eslint/parser": "^8.22.0",
+		"commitizen": "^4.3.1",
+		"concurrently": "^9.1.2",
+		"cz-conventional-changelog": "^3.3.0",
+		"eslint": "^9.19.0",
+		"eslint-plugin-react": "^7.37.4",
+		"globals": "^15.14.0",
+		"happy-dom": "^16.7.3",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.4.3",
+		"prettier": "^3.4.2",
+		"react": "^19.0.0",
+		"react-singleton-context": "^1.1.0",
+		"rollup": "^4.32.0",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"typescript": "^5.7.3",
+		"vite": "^6.0.11",
+		"vitest": "^3.0.4"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-singleton-context": "^1.1.0"
+	},
+	"lint-staged": {
+		"src/**/*.{js,jsx,ts,tsx}": [
+			"npm run lint:fix"
+		]
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	}
+}
