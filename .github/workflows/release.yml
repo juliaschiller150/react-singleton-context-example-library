@@ -1,0 +1,44 @@
+name: Release
+
+on:
+    push:
+        branches:
+            - main
+
+permissions:
+    id-token: write # Required for OIDC / NPM Trusted Publishing (https://repos.openssf.org/trusted-publishers-for-all-package-repositories)
+    issues: write
+    contents: write
+    pull-requests: write
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+            - uses: actions/setup-node@v6
+              with:
+                  node-version: 24
+                  registry-url: 'https://registry.npmjs.org'
+            - name: Update npm
+              run: npm install -g npm@latest # NPM Trusted Publishing requires npm 11.5.1 or later
+            - name: Install dependencies
+              run: npm ci
+              env:
+                  HUSKY: 0 # Disable husky within CI/CD
+            - name: Configure git
+              run: |
+                  git config user.name "GitHub Actions Bot"
+                  git config user.email "github-actions-bot@users.noreply.github.com"
+            - uses: googleapis/release-please-action@v4
+              with:
+                  release-type: node
+            - name: Build project
+              if: ${{ steps.release.outputs.release_created }}
+              run: npm run build
+            - name: Bundle tarball
+              if: ${{ steps.release.outputs.release_created }}
+              run: npm run package
+            - name: Publish to npm
+              if: ${{ steps.release.outputs.release_created }}
+              run: npm publish
