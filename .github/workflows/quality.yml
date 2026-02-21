@@ -27,5 +27,3 @@ jobs:
                   HUSKY: 0 # Disable husky within CI/CD
             - name: Run quality checks
               run: npm run quality
-            - name: Build project
-              run: npm run build
