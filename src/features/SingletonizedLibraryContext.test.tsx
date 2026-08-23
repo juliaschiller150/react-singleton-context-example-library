@@ -1,6 +1,6 @@
-import * as React from 'react';
+import { useContext, type Provider, type ReactNode } from 'react';
 import {
-    ISingletonizedLibraryContext,
+    type ISingletonizedLibraryContext,
     SingletonizedLibraryContext,
     SingletonizedLibraryContextProvider
 } from './SingletonizedLibraryContext';
@@ -8,10 +8,10 @@ import { renderHook } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 
 const createWrapper = (
-    Wrapper: React.Provider<ISingletonizedLibraryContext | null>,
+    Wrapper: Provider<ISingletonizedLibraryContext | null>,
     props: { value: ISingletonizedLibraryContext | null }
 ) => {
-    return function CreatedWrapper({ children }: { children: React.ReactNode }) {
+    return function CreatedWrapper({ children }: { children: ReactNode }) {
         return <Wrapper {...props}>{children}</Wrapper>;
     };
 };
@@ -20,7 +20,7 @@ describe('SingletonizedLibraryContext', () => {
     test('should return context message', () => {
         const { result } = renderHook(
             () => {
-                return React.useContext(SingletonizedLibraryContext);
+                return useContext(SingletonizedLibraryContext);
             },
             {
                 wrapper: createWrapper(SingletonizedLibraryContextProvider, {

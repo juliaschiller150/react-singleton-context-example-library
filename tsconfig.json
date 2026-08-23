@@ -6,7 +6,7 @@
         "module": "ES2022",
         "declaration": true,
         "jsx": "react-jsx",
-        "moduleResolution": "Node",
+        "moduleResolution": "bundler",
         "strict": true,
         "noUnusedLocals": true,
         "skipLibCheck": true,
