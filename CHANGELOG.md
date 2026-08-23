@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/juliaschiller150/react-singleton-context-example-library/compare/v1.1.0...v1.2.0) (2026-08-23)
+
+
+### Features
+
+* update release-please GitHub action, and specify CHANGELOG config for it too ([5c4d97b](https://github.com/juliaschiller150/react-singleton-context-example-library/commit/5c4d97be8e6aaa4f0b3f5e5772cdaff09725a0ff))
+
 ## [1.1.0](https://github.com/juliaschiller150/react-singleton-context-example-library/compare/v1.0.0...v1.1.0) (2026-08-23)
 
 
